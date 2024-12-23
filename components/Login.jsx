@@ -13,22 +13,15 @@ export default function Login() {
         style={
           {
             width: window.width,
-            height: 400
+            height: 500
           }}
       />
 
 
-      <View style={{
-        backgroundColor: 'white',
-        borderTopRightRadius: 60,
-        borderTopLeftRadius: 60,
-        marginTop: 20,
-        fontSize: 25,
-        width: '100%'
-      }}>
+      <View style={styles.container}>
         <Text style={{
           textAlign: 'center', fontSize: 25, fontFamily: 'outfit-bold',
-          marginTop: 30
+          marginTop: 20
         }}>
           AI Travel Planner</Text>
 
@@ -41,8 +34,6 @@ export default function Login() {
           marginTop: 25
         }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta beatae deserunt a cupiditate veritatis consequatur delectus tenetur officia. Fugiat sint cupiditate porro laboriosam voluptatibus, perferendis asperiores harum veniam expedita? Corporis, consequatur?
         </Text>
-
-
 
         <TouchableOpacity style={styles.button}
           onPress={() => router.push('auth/sign-in')}>
@@ -72,6 +63,12 @@ const styles = StyleSheet.create({
     borderRadius: 200,
   },
 
+container:{
+  marginTop:-20,
+  backgroundColor: 'white',
+  borderTopLeftRadius:30,
+  borderTopRightRadius:30,
 
+}
 
 })
