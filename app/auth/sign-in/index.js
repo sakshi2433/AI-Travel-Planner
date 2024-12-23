@@ -1,5 +1,5 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigation, useRouter } from 'expo-router'
 
 export default function SignIn() {
