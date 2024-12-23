@@ -24,6 +24,8 @@ export default function SignUp() {
       ToastAndroid.show("please enter all details", ToastAndroid.LONG)
       return;
     }
+
+    console.log(email,password)
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up 
