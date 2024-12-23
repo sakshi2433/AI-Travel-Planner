@@ -37,7 +37,7 @@ useEffect(()=>{
 
 
 <TouchableOpacity
-      onPress={()=>router.replace('app/auth/sign-in')}
+      onPress={()=>router.replace('/auth/sign-in')}
       style={{backgroundColor:'white',
         marginBottom:1000
       }}>

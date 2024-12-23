@@ -1,8 +1,8 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native'
 import React from 'react'
 import { useRouter } from 'expo-router'
-const window = Dimensions.get('window');
 export default function Login() {
+  const window = Dimensions.get('window');
 
 
   const router = useRouter();
@@ -13,7 +13,7 @@ export default function Login() {
         style={
           {
             width: window.width,
-            height: 500
+            height: window.height / 2,
           }}
       />
 
