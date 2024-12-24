@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-
+import { useFonts } from "expo-font";
 export default function RootLayout() {
   
   useFonts({
@@ -16,7 +16,5 @@ export default function RootLayout() {
     </Stack>
   );
 }
-function useFonts(arg0: { outfit: any; 'outfit-bold': any; 'outfit-medium': any; }) {
-  throw new Error("Function not implemented.");
-}
+
 

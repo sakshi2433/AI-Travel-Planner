@@ -6,13 +6,13 @@ import { Link, Redirect } from 'expo-router';
 
 export default function Index() {
 
-
     const user= auth.currentUser;
 
     return (
         <View style={{flex:1}}>
             {user?
-        <Redirect href={'/mytrip'}/>:
+          
+        <Redirect href={"./(tabs)/mytrip.jsx"}/>:
         <Login />
         }
             

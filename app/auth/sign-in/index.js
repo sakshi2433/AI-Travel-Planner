@@ -4,6 +4,8 @@ import { useNavigation, useRouter } from 'expo-router'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from './../../../configs/FirebaseConfig';
 import Ionicons from '@expo/vector-icons/Ionicons';
+
+
 export default function SignIn() {
 
   const window = Dimensions.get('window');
@@ -24,7 +26,6 @@ if(!email&&!password)
   return;
 }
 
-
 signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed in 
@@ -44,8 +45,6 @@ signInWithEmailAndPassword(auth, email, password)
     }
   });
 }
-
-
 
   return (
     <View style={{
