@@ -105,7 +105,8 @@ const styles = StyleSheet.create({
     padding: 10,
     textAlign: 'center',
     marginBottom: 50,
-    marginTop: 70
+    marginTop: 70,
+    fontFamily:'outfit-bold'
   },
   button2: {
     backgroundColor: 'white',
@@ -116,6 +117,7 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 20,
     textAlign: 'center',
-    marginTop: 50
+    marginTop: 50,
+    fontFamily:'outfit-bold'
   }
 })

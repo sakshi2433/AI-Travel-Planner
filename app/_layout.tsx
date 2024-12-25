@@ -8,8 +8,7 @@ export default function RootLayout() {
     'outfit-medium':require('./../assets/fonts/Outfit-Medium.ttf')
   })
   
-  return 
-  (
+  return(
     <Stack screenOptions={{headerShown:false}}>
       {/*<Stack.Screen name="index" options={{headerShown:false}}/>*/}
       <Stack.Screen name="(tabs)"/>

@@ -8,7 +8,6 @@ export default function MyTrip() {
   const window = Dimensions.get('window');
 
   const [userTrips,setUserTrips]=useState();
-
   return (
     <View style={{
       backgroundColor:'white',
@@ -25,11 +24,10 @@ export default function MyTrip() {
         fontSize:30
       }}>My Trips</Text>
       <Ionicons name="add-circle-outline" size={48} color="black" />
+      
+      
       </View>
-
-      {userTrips?.length==0?
-      <StartNewTripCard/>
-      :null}
+      {userTrips.length==0?<StartNewTripCard/>:null}
     </View>
   )
 }

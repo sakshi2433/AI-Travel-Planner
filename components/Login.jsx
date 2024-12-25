@@ -13,7 +13,7 @@ export default function Login() {
         style={
           {
             width: window.width,
-            height: window.height / 2,
+            height: window.height/1.7,
           }}
       />
 
@@ -31,7 +31,7 @@ export default function Login() {
           fontSize: 15,
           textAlign: 'center',
           color: '#99AAAB',
-          marginTop: 25
+          margin: 25
         }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta beatae deserunt a cupiditate veritatis consequatur delectus tenetur officia. Fugiat sint cupiditate porro laboriosam voluptatibus, perferendis asperiores harum veniam expedita? Corporis, consequatur?
         </Text>
 
@@ -40,6 +40,7 @@ export default function Login() {
           <Text style={{
             color: 'white',
             textAlign: 'center',
+            padding:10,
             marginTop: 2,
             marginBottom: 2
           }}>Get Started</Text>

@@ -56,7 +56,7 @@ signInWithEmailAndPassword(auth, email, password)
       <Text style={{
         fontFamily: 'outfit-bold',
         fontSize: 30,
-        margin: 20
+        margin: window.width*0.03
       }}>Let's Sign you In</Text>
 
       <Text style={{
