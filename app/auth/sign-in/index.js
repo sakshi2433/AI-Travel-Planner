@@ -77,7 +77,7 @@ signInWithEmailAndPassword(auth, email, password)
         margin: 20
       }}>
         <Text style={{
-          fontFamily: 'outfit-bold',
+          fontFamily: 'outfit',
           marginLeft: 10
         }}>Email</Text>
         <TextInput 
@@ -87,7 +87,7 @@ signInWithEmailAndPassword(auth, email, password)
 
       <View style={{ margin: 20 }}>
         <Text style={{
-          fontfamily: 'outfit-bold',
+          fontfamily: 'outfit',
           marginLeft: 10
         }}>Password</Text>
         <TextInput 

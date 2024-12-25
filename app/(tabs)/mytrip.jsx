@@ -7,7 +7,7 @@ export default function MyTrip() {
 
   const window = Dimensions.get('window');
 
-  const [userTrips,setUserTrips]=useState();
+  const [userTrips,setUserTrips]=useState([]);
   return (
     <View style={{
       backgroundColor:'white',

@@ -31,8 +31,9 @@ export default function Login() {
           fontSize: 15,
           textAlign: 'center',
           color: '#99AAAB',
-          margin: 25
-        }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta beatae deserunt a cupiditate veritatis consequatur delectus tenetur officia. Fugiat sint cupiditate porro laboriosam voluptatibus, perferendis asperiores harum veniam expedita? Corporis, consequatur?
+          margin: 25,
+         
+        }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta beatae deserunt a cupiditate itatis consequatur delectus tenetur officia. Fugiat sint cupiditate porro laboriosam voluptatibus, perferendis asperiores harum veniam expedita? Corporis, consequatur?
         </Text>
 
         <TouchableOpacity style={styles.button}
@@ -41,8 +42,7 @@ export default function Login() {
             color: 'white',
             textAlign: 'center',
             padding:10,
-            marginTop: 2,
-            marginBottom: 2
+            margin: 2,
           }}>Get Started</Text>
         </TouchableOpacity>
 
