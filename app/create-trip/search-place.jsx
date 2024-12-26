@@ -9,6 +9,7 @@ export default function SearchPlace() {
   const {tripData,setTripData}=useContext(CreateTripContext);
   const router=useRouter();
 
+const {width, height}=Dimensions.get('window');
 
   useEffect(()=>{
     navigation.setOptions({
@@ -24,10 +25,9 @@ export default function SearchPlace() {
   return (
     <View
     style={{
-      padding:25,
-      paddingTop:75,
-      backgroundColor:'white',
-      height:'window.height'
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
     }}>
 
      <GooglePlacesAutocomplete
@@ -49,19 +49,17 @@ export default function SearchPlace() {
         router.push('/create-trip/select-traveler')
       }}
       query={{
-        key: "AIzaSyBGTiQScdKh4LDI7Enr5d1y5N95uXTZoHc",
+        key: "your-api-key",
         language: 'en',
       }}
       styles={{
         textInputContainer:{
           borderWidth:1,
           borderRadius:5,
-          marginTop:25
+          marginTop:height*0.1,
+          width
         }
       }}
-
-
-
     />
 
     </View>

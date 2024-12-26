@@ -1,3 +1,4 @@
+import 'react-native-get-random-values';
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react'
 import Login from './../components/Login';
