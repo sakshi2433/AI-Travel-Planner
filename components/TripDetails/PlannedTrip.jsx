@@ -23,7 +23,7 @@ export default function PlannedTrip({details}) {
               marginTop:20,
 
             }}>{day.charAt(0).toUpperCase()+day.slice(1)}</Text>
-            {details.plan.map((place,index)=>(
+            {(details.plan||details.activities).map((place,index)=>(
               <PlaceCard place={place}/>
             ))}
         </View>

@@ -69,7 +69,7 @@ setPhotoRef(result);
         }}>⏱️ Time to Travel: 
         <Text style={{
           fontFamily:'outfit-bold'
-        }}>{place?.time_to_travel}</Text></Text>
+        }}>{(place?.time_to_travel)||place?.time}</Text></Text>
         </View>
         <TouchableOpacity style={{
           backgroundColor:'black',
