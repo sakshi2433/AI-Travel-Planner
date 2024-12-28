@@ -3,7 +3,6 @@ import React, { useEffect, useContext } from 'react'
 import { useNavigation, useRouter } from 'expo-router'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import {CreateTripContext} from './../../context/CreateTripContext'
-import {scotch} from 'react-native-config';
 
 export default function SearchPlace() {
   const navigation=useNavigation();
@@ -50,7 +49,7 @@ const {width, height}=Dimensions.get('window');
         router.push('/create-trip/select-traveler')
       }}
       query={{
-        key: scotch,
+        key: "AIzaSyA2hC-NLy9UGnzOOqTZDnRxr7uSny89dss",
         language: 'en',
       }}
       styles={{
