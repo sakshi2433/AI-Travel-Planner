@@ -1,17 +1,18 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, ScrollView } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocalSearchParams, useNavigation } from 'expo-router'
 import moment from 'moment';
 import FlightInfo from '../../components/TripDetails/FlightInfo';
 import { CreateTripContext } from '../../context/CreateTripContext';
 import HotelList from '../../components/TripDetails/HotelList';
+import PlannedTrip from '../../components/TripDetails/PlannedTrip';
 
 
 
 export default function TripDetails() {
 const navigation=useNavigation();
 const {trip}=useLocalSearchParams();
-const [tripDetails,setTripDetails]=useState([]);
+const [tripDetails,setTripDetails]=useState(JSON.parse(trip));
 const {tripData,setTripData}=useContext(CreateTripContext);
 
 
@@ -31,7 +32,7 @@ useEffect(()=>{
 
 
   return tripDetails&&(
-    <View>
+    <ScrollView>
       <Image source={{uri:
       'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference='
               +formatData(tripDetails.tripData).locationInfo?.photoRef
@@ -76,7 +77,7 @@ useEffect(()=>{
                       fontFamily:'outfit',
                       fontSize:17,
                       color:'gray'
-                  }}>🚌{formatData(tripDetails,tripData)?.traveler?.title}</Text>
+                  }}>🚌{formatData(tripDetails.tripData)?.traveler?.title}</Text>
       
 {/* flight info  */}
 <FlightInfo flightData={tripDetails?.tripPlan?.flight_details} />
@@ -86,13 +87,13 @@ useEffect(()=>{
 
 {/* trip day planner  */}
 
-
+<PlannedTrip details={tripDetails?.tripPlan?.itinerary}/>
       
       
       
       </View>
 
 
-    </View>
+    </ScrollView>
   )
 }
