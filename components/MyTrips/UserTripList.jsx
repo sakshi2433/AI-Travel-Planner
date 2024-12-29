@@ -1,11 +1,12 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import moment from 'moment';
 import UserTripCard from './UserTripCard';
 import { useRouter } from 'expo-router';
 
 export default function UserTripList({userTrips}) {
-  const LatestTrip=JSON.parse(userTrips[0].tripData);
+    const [tripNo, setTripNo] = useState(userTrips.length - 1);
+  const LatestTrip=JSON.parse(userTrips[tripNo].tripData);
   const router=useRouter();
   const formatData=(data)=>{
 return JSON.parse(data);
@@ -43,7 +44,7 @@ return JSON.parse(data);
                 fontFamily:'outfit-medium',
                 fontSize:24,
                 color:'black'
-            }}>{userTrips[0]?.tripPlan?.location}</Text>
+            }}>{userTrips[tripNo]?.tripPlan?.location}</Text>
             
             
             <View style={{
@@ -66,7 +67,7 @@ return JSON.parse(data);
             </View>
             <TouchableOpacity
             onPress={()=>router.push({pathname:'/trip-details',params:
-                {trip:JSON.stringify(userTrips[0])
+                {trip:JSON.stringify(userTrips[tripNo]),
             }})}
             style={{
                 backgroundColor:'black',
@@ -83,7 +84,10 @@ return JSON.parse(data);
             </TouchableOpacity>
         </View>
         {userTrips.map((trip,index)=>(
-            <UserTripCard trip={trip} key={index} />
+            <TouchableOpacity key={index} onPress={()=>{
+                setTripNo(index);
+            }}>
+            <UserTripCard trip={trip} /></TouchableOpacity>
         ))}
       </View>
     </View>

@@ -1,41 +1,291 @@
 const {
-    GoogleGenerativeAI,
-    HarmCategory,
-    HarmBlockThreshold,
-  } = require("@google/generative-ai");
-  
-  const apiKey = process.env.EXPO_PUBLIC_GOOGLE_GEMINI_API_KEY;
-  const genAI = new GoogleGenerativeAI(apiKey);
-  
-  const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash-exp",
-  });
-  
-  const generationConfig = {
-    temperature: 1,
-    topP: 0.95,
-    topK: 40,
-    maxOutputTokens: 8192,
-    responseMimeType: "application/json",
-  };
-  
-  
-   export const chatSession = model.startChat({
-      generationConfig,
-      history: [
-        {
-          role: "user",
-          parts: [
-            {text: "Generate Travel Plan for Location: Rajasthan, India for 4 Days and 3 Nights for Just Me with a Luxury budget with a Flight details, flight price with Booking URL, hotel options list with Hotel Name, Hotel address, price, hotel image URL, geo coordinates, rating, descriptions and places to visit nearby with place name, place details, place image URL, geo coordinates, ticket Pricing, time to travel each of the location for 4 days and 3 nights with each day plan with best time to visit in JSON format."},
-          ],
-        },
-        {
-          role: "model",
-          parts: [
-            {text: "Okay, here's a luxurious 4-day, 3-night Rajasthan itinerary designed for a solo traveler, packed with details you requested, in JSON format. Please note that flight prices and hotel availability can vary significantly; I've provided examples and booking URLs for illustration. *Always check live prices and availability.*\n\n```json\n{\n  \"trip_name\": \"Luxury Rajasthan Escape (Solo Traveler)\",\n  \"duration\": \"4 Days, 3 Nights\",\n  \"traveler_type\": \"Solo\",\n  \"budget\": \"Luxury\",\n  \"location\": \"Rajasthan, India\",\n  \"flight_details\": {\n    \"arrival_city\": \"Jaipur\",\n    \"departure_city\": \"Jaipur\",\n    \"example_flight\": {\n      \"airline\": \"IndiGo\",\n      \"departure_time\": \"7:00 AM (Example)\",\n       \"arrival_time\": \"8:15 AM (Example)\",\n      \"price\": \"INR 5000 (Example)\",\n      \"booking_url\": \"https://www.goindigo.in/\"\n    },\n        \"note\":\"Flight prices vary, always check the live price while booking\"\n\n  },\n  \"hotels\": [\n    {\n      \"hotel_name\": \"Rambagh Palace, Jaipur\",\n      \"address\": \"Bhawani Singh Road, Jaipur, Rajasthan 302005, India\",\n      \"price_per_night\": \"INR 45000 (Approx)\",\n      \"image_url\": \"https://media-cdn.tripadvisor.com/media/photo-m/1280/1c/1f/ff/ff/rambagh-palace.jpg\",\n      \"geo_coordinates\": {\n        \"latitude\": 26.9185,\n        \"longitude\": 75.8195\n      },\n      \"rating\": 4.8,\n      \"description\": \"A magnificent palace hotel offering unparalleled luxury and regal experiences.\",\n      \"nearby_places\": [\n        {\n          \"place_name\": \"City Palace\",\n           \"place_details\": \"A beautiful palace complex with museums, courtyards and gardens, showcasing the royal heritage of Jaipur.\",\n           \"image_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/City_Palace_Jaipur_Entrance_Gate.jpg/1280px-City_Palace_Jaipur_Entrance_Gate.jpg\",\n           \"geo_coordinates\": {\n            \"latitude\": 26.9242,\n            \"longitude\": 75.8229\n           },\n           \"ticket_price\": \"INR 700 (Approx)\",\n           \"time_to_travel\": \"10 minutes\"\n        },\n        {\n           \"place_name\": \"Hawa Mahal\",\n           \"place_details\": \"The Palace of Winds, an iconic structure with intricate latticework, offering stunning views.\",\n           \"image_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Hawa_Mahal%2C_Jaipur.jpg/1280px-Hawa_Mahal%2C_Jaipur.jpg\",\n           \"geo_coordinates\": {\n              \"latitude\": 26.9239,\n              \"longitude\": 75.8267\n             },\n           \"ticket_price\": \"INR 200 (Approx)\",\n           \"time_to_travel\": \"12 minutes\"\n          }\n      ]\n    },\n       {\n      \"hotel_name\": \"The Oberoi Udaivilas, Udaipur\",\n      \"address\": \"Haridas Ji Ki Magri, Mulla Talai, Udaipur, Rajasthan 313001, India\",\n      \"price_per_night\": \"INR 55000 (Approx)\",\n      \"image_url\": \"https://media-cdn.tripadvisor.com/media/photo-m/1280/1e/a3/43/49/the-oberoi-udaivilas.jpg\",\n      \"geo_coordinates\": {\n        \"latitude\": 24.5911,\n        \"longitude\": 73.6968\n      },\n      \"rating\": 4.9,\n      \"description\": \"An exquisite lakeside palace hotel renowned for its luxurious experiences and stunning views.\",\n       \"nearby_places\":[\n         {\n            \"place_name\":\"Lake Pichola\",\n            \"place_details\":\"A stunning artificial lake in Udaipur, offering boat rides and serene views.\",\n           \"image_url\":\"https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Pichola_Lake_in_Udaipur.jpg/1280px-Pichola_Lake_in_Udaipur.jpg\",\n           \"geo_coordinates\":{\n             \"latitude\":24.5803,\n             \"longitude\":73.6786\n           },\n            \"ticket_price\": \"INR 400 (Approx)\",\n            \"time_to_travel\": \"15 minutes\"\n          },\n          {\n             \"place_name\":\"City Palace, Udaipur\",\n            \"place_details\":\"A grand palace complex with a museum, offering insights into the royal history of Udaipur.\",\n             \"image_url\":\"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/City_Palace%2C_Udaipur_view_from_lake_Pichola.jpg/1280px-City_Palace%2C_Udaipur_view_from_lake_Pichola.jpg\",\n             \"geo_coordinates\": {\n              \"latitude\": 24.5795,\n              \"longitude\": 73.6824\n             },\n            \"ticket_price\":\"INR 300 (Approx)\",\n            \"time_to_travel\":\"20 minutes\"\n          }\n\n       ]\n    },\n    {\n      \"hotel_name\": \"Umaid Bhawan Palace, Jodhpur\",\n      \"address\": \"Circuit House Rd, Cantt Area, Jodhpur, Rajasthan 342006, India\",\n      \"price_per_night\": \"INR 40000 (Approx)\",\n      \"image_url\": \"https://media-cdn.tripadvisor.com/media/photo-m/1280/1a/20/e0/78/umaid-bhawan-palace.jpg\",\n      \"geo_coordinates\": {\n        \"latitude\": 26.2888,\n        \"longitude\": 73.0296\n      },\n      \"rating\": 4.7,\n      \"description\": \"A magnificent palace hotel offering a blend of art deco and royal Rajputana architecture.\",\n      \"nearby_places\":[\n          {\n           \"place_name\":\"Mehrangarh Fort\",\n           \"place_details\":\"An imposing fort perched on a hilltop, showcasing the rich history and culture of Jodhpur.\",\n           \"image_url\":\"https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Mehrangarh_Fort_India.jpg/1280px-Mehrangarh_Fort_India.jpg\",\n            \"geo_coordinates\":{\n              \"latitude\":26.2998,\n              \"longitude\":73.0175\n            },\n           \"ticket_price\":\"INR 600 (Approx)\",\n           \"time_to_travel\": \"25 minutes\"\n          },\n        {\n           \"place_name\":\"Jaswant Thada\",\n           \"place_details\": \"A stunning marble cenotaph, known for its intricate carvings and serene surroundings.\",\n           \"image_url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Jaswant_Thada_%28Jodhpur%29.jpg/1280px-Jaswant_Thada_%28Jodhpur%29.jpg\",\n          \"geo_coordinates\": {\n             \"latitude\": 26.2997,\n             \"longitude\": 73.0214\n            },\n            \"ticket_price\": \"INR 200 (Approx)\",\n            \"time_to_travel\": \"28 minutes\"\n          }\n      ]\n    }\n  ],\n   \"itinerary\": {\n     \"day1\": {\n       \"theme\": \"Arrival in Jaipur & Royal Exploration\",\n       \"best_time_to_visit\": \"October to March (Weather is Pleasant)\",\n       \"activities\":[\n            {\"time\":\"9:00 AM\", \"activity\":\"Arrive in Jaipur and transfer to Rambagh Palace.\"},\n            {\"time\":\"10:30 AM\", \"activity\":\"Check-in and freshen up.\"},\n            {\"time\":\"12:00 PM\", \"activity\":\"Lunch at the hotel's signature restaurant.\"},\n             {\"time\":\"2:00 PM\", \"activity\":\"Visit City Palace and Hawa Mahal.\"},\n            {\"time\":\"5:00 PM\", \"activity\":\"Shopping for local handicrafts and textiles.\"},\n             {\"time\":\"7:00 PM\", \"activity\":\"Relax at the hotel, enjoy a spa treatment.\"},\n            {\"time\":\"9:00 PM\", \"activity\":\"Dinner at the hotel.\"}\n            ]\n         },\n     \"day2\":{\n        \"theme\": \"Travel to Udaipur & Lakeside Serenity\",\n       \"best_time_to_visit\": \"October to March (Weather is Pleasant)\",\n       \"activities\":[\n            {\"time\":\"7:00 AM\", \"activity\":\"Enjoy a leisurely breakfast at Rambagh Palace.\"},\n            {\"time\":\"8:30 AM\", \"activity\":\"Private transfer to Jaipur Airport.\"},\n            {\"time\":\"10:00 AM\", \"activity\":\"Flight to Udaipur (Check Flight availability)\"},\n           {\"time\":\"11:30 AM\", \"activity\":\"Check-in at The Oberoi Udaivilas.\"},\n           {\"time\":\"1:00 PM\", \"activity\":\"Lunch at the hotel.\"},\n            {\"time\":\"3:00 PM\", \"activity\":\"Explore Lake Pichola by boat.\"},\n           {\"time\":\"5:00 PM\",\"activity\":\"Visit City Palace in Udaipur.\"},\n            {\"time\":\"7:00 PM\", \"activity\":\"Enjoy a traditional Rajasthani dinner.\"},\n            {\"time\":\"9:00 PM\", \"activity\":\"Relax at the hotel or enjoy a nightcap.\"}\n        ]\n        },\n     \"day3\":{\n       \"theme\":\"Travel to Jodhpur & Fortified Grandeur\",\n       \"best_time_to_visit\": \"October to March (Weather is Pleasant)\",\n       \"activities\":[\n          {\"time\":\"7:00 AM\", \"activity\":\"Breakfast at the Oberoi Udaivilas\"},\n           {\"time\":\"8:30 AM\", \"activity\":\"Private transfer to Udaipur Airport\"},\n           {\"time\":\"10:00 AM\", \"activity\":\"Flight to Jodhpur (Check Flight availability)\"},\n           {\"time\":\"11:30 AM\", \"activity\":\"Check-in at Umaid Bhawan Palace\"},\n           {\"time\":\"1:00 PM\",\"activity\":\"Lunch at the hotel.\"},\n           {\"time\":\"3:00 PM\", \"activity\":\"Visit Mehrangarh Fort.\"},\n           {\"time\":\"5:00 PM\", \"activity\":\"Visit Jaswant Thada.\"},\n           {\"time\":\"7:00 PM\", \"activity\":\"Enjoy a rooftop dinner in the hotel or a heritage restaurant\"},\n           {\"time\":\"9:00 PM\", \"activity\":\"Relax at the hotel's bar.\"}\n\n           ]\n          },\n     \"day4\":{\n         \"theme\": \"Departure from Jodhpur\",\n         \"best_time_to_visit\": \"October to March (Weather is Pleasant)\",\n         \"activities\":[\n             {\"time\":\"7:00 AM\", \"activity\":\"Breakfast at the hotel.\"},\n            {\"time\":\"9:00 AM\", \"activity\":\"Enjoy a final spa session\"},\n             {\"time\":\"11:00 AM\", \"activity\":\"Check-out from the hotel\"},\n             {\"time\":\"12:00 PM\", \"activity\":\"Private transfer to Jodhpur Airport\"},\n           {\"time\":\"2:00 PM\", \"activity\":\"Departure from Jodhpur\"}\n          ]\n       }\n    }\n}\n```\n\n**Important Notes:**\n\n*   **Prices:** Hotel and flight prices are approximate and can vary. Check real-time pricing.\n*   **Customization:** This itinerary can be customized further based on your specific interests.\n*   **Booking:** It's recommended to book hotels and flights in advance, especially during peak season.\n*   **Travel Times:**  Travel times between cities may vary depending on the mode of transport (flights, cars). The itinerary uses flight time for intercity travel.\n\nLet me know if you have specific preferences or adjustments you'd like to make!\n"},
-          ],
-        },
+  GoogleGenerativeAI,
+  HarmCategory,
+  HarmBlockThreshold,
+} = require("@google/generative-ai");
+
+const apiKey = process.env.EXPO_PUBLIC_GOOGLE_GEMINI_API_KEY;
+const genAI = new GoogleGenerativeAI(apiKey);
+
+const model = genAI.getGenerativeModel({
+  model: "gemini-2.0-flash-exp",
+});
+
+const generationConfig = {
+  temperature: 1,
+  topP: 0.95,
+  topK: 40,
+  maxOutputTokens: 8192,
+  responseMimeType: "application/json",
+};
+
+
+export const chatSession = model.startChat({
+  generationConfig,
+  history: [
+    {
+      role: "user",
+      parts: [
+        { text: "Generate Travel Plan for from \"Ranchi\" to \"Rajasthan\", India for 4 Days and 3 Nights for Just Me with a Luxury budget with a Flight details, flight price with Booking URL, hotel options list with Hotel Name, Hotel address, price, hotel image URL, geo coordinates, rating, descriptions and places to visit nearby with place name, place details, place image URL, geo coordinates, ticket Pricing, time to travel each of the location for 4 days and 3 nights with each day plan with best time to visit in JSON format." },
       ],
-    });
-  
-    
+    },
+    {
+      role: "model",
+      parts: [
+        {
+          text: `Okay, here's a luxurious 4-day, 3-night Rajasthan itinerary designed for a solo traveler, packed with details you requested, in JSON format. Please note that flight prices and hotel availability can vary significantly; I've provided examples and booking URLs for illustration. *Always check live prices and availability.*
+              \`\`\`json
+              ${JSON.stringify({
+            "trip_name": "Luxury Rajasthan Escape (Solo Traveler)",
+            "duration": "4 Days, 3 Nights",
+            "traveler_type": "Solo",
+            "budget": "Luxury",
+            "location": "Rajasthan, India",
+            "flight_details": {
+              "arrival_city": "Jaipur",
+              "departure_city": "Ranchi",
+              "airline": "IndiGo",
+              "departure_time": "7:00 AM",
+              "arrival_time": "8:15 AM",
+              "price": "INR 5000",
+              "booking_url": "https://www.goindigo.in/",
+            },
+            "hotels": [
+              {
+                "hotel_name": "Rambagh Palace, Jaipur",
+                "address": "Bhawani Singh Road, Jaipur, Rajasthan 302005, India",
+                "price_per_night": "INR 45000 (Approx)",
+                "image_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1c/1f/ff/ff/rambagh-palace.jpg",
+                "geo_coordinates": {
+                  "latitude": 26.9185,
+                  "longitude": 75.8195
+
+                },
+                "rating": 4.8,
+                "description": "A magnificent palace hotel offering unparalleled luxury and regal experiences.",
+                "nearby_places": [
+                  {
+                    "place_name": "City Palace",
+                    "place_details": "A beautiful palace complex with museums, courtyards and gardens, showcasing the royal heritage of Jaipur.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/City_Palace_Jaipur_Entrance_Gate.jpg/1280px-City_Palace_Jaipur_Entrance_Gate.jpg",
+                    "geo_coordinates": {
+                      "latitude": 26.9242,
+                      "longitude": 75.8229
+
+                    },
+                    "ticket_price": "INR 700 (Approx)",
+                    "time_to_travel": "10 minutes"
+                  },
+                  {
+                    "place_name": "Hawa Mahal",
+                    "place_details": "The Palace of Winds, an iconic structure with intricate latticework, offering stunning views.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Hawa_Mahal%2C_Jaipur.jpg/1280px-Hawa_Mahal%2C_Jaipur.jpg",
+                    "geo_coordinates": {
+                      "latitude": 26.9239,
+                      "longitude": 75.8267
+
+                    },
+                    "ticket_price": "INR 200 (Approx)",
+                    "time_to_travel": "12 minutes"
+                  }
+
+                ]
+              },
+              {
+                "hotel_name": "The Oberoi Udaivilas, Udaipur",
+                "address": "Haridas Ji Ki Magri, Mulla Talai, Udaipur, Rajasthan 313001, India",
+                "price_per_night": "INR 55000 (Approx)",
+                "image_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1e/a3/43/49/the-oberoi-udaivilas.jpg",
+                "geo_coordinates": {
+                  "latitude": 24.5911,
+                  "longitude": 73.6968
+
+                },
+                "rating": 4.9,
+                "description": "An exquisite lakeside palace hotel renowned for its luxurious experiences and stunning views.",
+                "nearby_places": [
+                  {
+                    "place_name": "Lake Pichola",
+                    "place_details": "A stunning artificial lake in Udaipur, offering boat rides and serene views.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Pichola_Lake_in_Udaipur.jpg/1280px-Pichola_Lake_in_Udaipur.jpg",
+                    "geo_coordinates": {
+                      "latitude": 24.5803,
+                      "longitude": 73.6786
+
+                    },
+                    "ticket_price": "INR 400 (Approx)",
+                    "time_to_travel": "15 minutes"
+                  },
+                  {
+                    "place_name": "City Palace, Udaipur",
+                    "place_details": "A grand palace complex with a museum, offering insights into the royal history of Udaipur.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/City_Palace%2C_Udaipur_view_from_lake_Pichola.jpg/1280px-City_Palace%2C_Udaipur_view_from_lake_Pichola.jpg",
+                    "geo_coordinates": {
+                      "latitude": 24.5795,
+                      "longitude": 73.6824
+
+                    },
+                    "ticket_price": "INR 300 (Approx)",
+                    "time_to_travel": "20 minutes"
+                  }
+
+                ]
+              },
+              {
+                "hotel_name": "Umaid Bhawan Palace, Jodhpur",
+                "address": "Circuit House Rd, Cantt Area, Jodhpur, Rajasthan 342006, India",
+                "price_per_night": "INR 40000 (Approx)",
+                "image_url": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1a/20/e0/78/umaid-bhawan-palace.jpg",
+                "geo_coordinates": {
+                  "latitude": 26.2888,
+                  "longitude": 73.0296
+
+                },
+                "rating": 4.7,
+                "description": "A magnificent palace hotel offering a blend of art deco and royal Rajputana architecture.",
+                "nearby_places": [
+                  {
+                    "place_name": "Mehrangarh Fort",
+                    "place_details": "An imposing fort perched on a hilltop, showcasing the rich history and culture of Jodhpur.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Mehrangarh_Fort_India.jpg/1280px-Mehrangarh_Fort_India.jpg",
+                    "geo_coordinates": {
+                      "latitude": 26.2998,
+                      "longitude": 73.0175
+
+                    },
+                    "ticket_price": "INR 600 (Approx)",
+                    "time_to_travel": "25 minutes"
+                  },
+                  {
+                    "place_name": "Jaswant Thada",
+                    "place_details": "A stunning marble cenotaph, known for its intricate carvings and serene surroundings.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Jaswant_Thada_%28Jodhpur%29.jpg/1280px-Jaswant_Thada_%28Jodhpur%29.jpg",
+                    "geo_coordinates": {
+                      "latitude": 26.2997,
+                      "longitude": 73.0214
+
+                    },
+                    "ticket_price": "INR 200 (Approx)",
+                    "time_to_travel": "28 minutes"
+                  }
+
+                ]
+              }
+            ],
+            "itinerary": {
+              "day 1": {
+                "places": [
+                  {
+                    "place_name": "Amber Fort",
+                    "place_details": "A magnificent fort built with red sandstone and marble, offering stunning views and historical significance.",
+                    "ticket_price": "INR 500 (foreign nationals), INR 100 (Indians)",
+                    "time_to_travel": "9:00 AM to 12:00 PM"
+                  },
+                  {
+                    "place_name": "Hawa Mahal",
+                    "place_details": "A five-story palace built in 1799, known as the Palace of Winds, offering a glimpse into the royal history.",
+                    "ticket_price": "INR 200 (foreign nationals), INR 50 (Indians)",
+                    "time_to_travel": "1:00 PM to 2:00 PM"
+                  },
+                  {
+                    "place_name": "City Palace",
+                    "place_details": "A complex of courtyards, gardens, and buildings, offering a rich history and museum tours.",
+                    "ticket_price": "INR 700 (foreign nationals), INR 300 (Indians)",
+                    "time_to_travel": "3:00 PM to 5:00 PM"
+                  },
+                  {
+                    "place_name": "Chokhi Dhani",
+                    "place_details": "A luxury ethnic resort offering traditional Rajasthani food, cultural performances, and a glimpse into the vibrant local culture.",
+                    "ticket_price": "INR 1,200 per person (approx.)",
+                    "time_to_travel": "7:00 PM to 10:00 PM"
+                  }
+                ]
+              },
+              "day 2": {
+                "places": [
+                  {
+                    "place_name": "Jantar Mantar",
+                    "place_details": "An astronomical observatory and UNESCO World Heritage Site featuring large instruments.",
+                    "ticket_price": "INR 200 (foreign nationals), INR 50 (Indians)",
+                    "time_to_travel": "9:00 AM to 11:00 AM"
+                  },
+                  {
+                    "place_name": "Albert Hall Museum",
+                    "place_details": "A stunning Indo-Saracenic architecture housing a rich collection of artifacts.",
+                    "ticket_price": "INR 150 (foreign nationals), INR 40 (Indians)",
+                    "time_to_travel": "12:00 PM to 1:30 PM"
+                  },
+                  {
+                    "place_name": "Nahargarh Fort",
+                    "place_details": "Overlooking Jaipur, this fort offers panoramic views and a peaceful ambiance.",
+                    "ticket_price": "INR 200 (foreign nationals), INR 50 (Indians)",
+                    "time_to_travel": "3:00 PM to 5:00 PM"
+                  },
+                  {
+                    "place_name": "Light & Sound Show at Amber Fort",
+                    "place_details": "A captivating show narrating the history of Amber Fort using lights and sound.",
+                    "ticket_price": "INR 250 per person (approx.)",
+                    "time_to_travel": "7:00 PM to 8:00 PM"
+                  }
+                ]
+              },
+              "day 3": {
+                "places": [
+                  {
+                    "place_name": "Pushkar Lake and Brahma Temple",
+                    "place_details": "A holy lake surrounded by ghats and the famous Brahma Temple, offering a serene experience.",
+                    "ticket_price": "Free",
+                    "time_to_travel": "8:00 AM to 11:00 AM"
+                  },
+                  {
+                    "place_name": "Ajmer Sharif Dargah",
+                    "place_details": "A famous shrine of Khwaja Moinuddin Chishti, visited by people of all faiths.",
+                    "ticket_price": "Free",
+                    "time_to_travel": "12:00 PM to 2:00 PM"
+                  },
+                  {
+                    "place_name": "Shopping in Jaipur (Johari Bazaar and Bapu Bazaar)",
+                    "place_details": "Explore vibrant markets offering jewelry, textiles, and handicrafts.",
+                    "ticket_price": "Free (Shopping costs vary)",
+                    "time_to_travel": "4:00 PM to 7:00 PM"
+                  }
+                ]
+              },
+              "day 4": {
+                "places": [
+                  {
+                    "place_name": "Jaipur Hot Air Balloon Ride",
+                    "place_details": "A luxury experience offering stunning aerial views of Jaipur.",
+                    "ticket_price": "INR 12,000 per person (approx.)",
+                    "time_to_travel": "6:00 AM to 8:00 AM"
+                  },
+                  {
+                    "place_name": "Panna Meena Ka Kund",
+                    "place_details": "An ancient stepwell with beautiful symmetrical architecture.",
+                    "ticket_price": "Free",
+                    "time_to_travel": "9:00 AM to 10:00 AM"
+                  },
+                  {
+                    "place_name": "Lunch at a Luxury Hotel (e.g., Rambagh Palace)",
+                    "place_details": "Enjoy a royal dining experience in an opulent palace setting.",
+                    "ticket_price": "INR 3,000 to INR 5,000 per person (approx.)",
+                    "time_to_travel": "1:00 PM to 3:00 PM"
+                  }
+                ]
+              }
+            }
+          }
+          )}
+             \`\`\`
+             **Important Notes:**
+             *   **Prices:** Hotel and flight prices are approximate and can vary. Check real-time pricing.
+             *   **Customization:** This itinerary can be customized further based on your specific interests.
+             *   **Booking:** It's recommended to book hotels and flights in advance, especially during peak season.
+             *   **Travel Times:**  Travel times between cities may vary depending on the mode of transport (flights, cars). The itinerary uses flight time for intercity travel.
+             Let me know if you have specific preferences or adjustments you'd like to make!
+             `},
+      ],
+    },
+  ],
+});
+

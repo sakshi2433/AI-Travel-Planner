@@ -1,16 +1,17 @@
-import { View, Text, Dimensions, ActivityIndicator, ScrollView } from 'react-native'
+import { View, Text, Dimensions, ActivityIndicator, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import StartNewTripCard from '../../components/MyTrips/StartNewTripCard';
 import {query,collection, where, getDocs} from 'firebase/firestore';
 import {auth, db} from './../../configs/FirebaseConfig';
 import UserTripList from '../../components/MyTrips/UserTripList';
-import { useNavigation } from 'expo-router';
+import { useNavigation, useRouter } from 'expo-router';
 
 
 export default function MyTrip() {
 
   const window = Dimensions.get('window');
+  const router=useRouter();
 
   const [userTrips,setUserTrips]=useState([]);
   const user=auth.currentUser;
@@ -57,7 +58,9 @@ setLoading(false);
         fontFamily:'outfit-bold',
         fontSize:30
       }}>My Trips</Text>
-      <Ionicons name="add-circle-outline" size={48} color="black" />
+      <TouchableOpacity onPress={()=>{
+        router.push('/create-trip/search-place')
+      }}><Ionicons name="add-circle-outline" size={48} color="black" /></TouchableOpacity>
       
       
       </View>

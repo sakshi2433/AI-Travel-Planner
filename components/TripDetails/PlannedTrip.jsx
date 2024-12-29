@@ -3,7 +3,7 @@ import React from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PlaceCard from './PlaceCard';
 
-export default function PlannedTrip({details}) {
+export default function PlannedTrip({itinerary}) {
   return (
     <View style={{
         marginTop:20
@@ -15,16 +15,16 @@ export default function PlannedTrip({details}) {
       }}>🏕️ Plan Details</Text>
 
 
-    {Object.entries(details).reverse().map(([day,details])=>(
-        <View>
+    {Object.entries(itinerary).map(([day,places])=>(
+        <View key={day}>
             <Text style={{
-              fontFamily:'outfit-medium',
-              fontSize:20,
+              fontFamily:'outfit-bold',
+              fontSize:25,
               marginTop:20,
 
             }}>{day.charAt(0).toUpperCase()+day.slice(1)}</Text>
-            {(details.plan||details.activities).map((place,index)=>(
-              <PlaceCard place={place}/>
+            {places.places.map((place,index)=>(
+              <PlaceCard place={place} key={index}/>
             ))}
         </View>
     ))}

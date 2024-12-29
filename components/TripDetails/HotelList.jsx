@@ -3,12 +3,12 @@ import React, { useEffect } from 'react'
 import { GetPhotoRef } from '../../services/GooglePlacesApi'
 import HotelCard from './HotelCard';
 
-export default function HotelList(hotelList) {
+export default function HotelList({hotelList}) {
 
 
 
 
-  
+  console.log(hotelList);
 
   return (
     <View style={{
@@ -28,7 +28,7 @@ export default function HotelList(hotelList) {
       showsHorizontalScrollIndicator={false}
       horizontal={true}
       renderItem={({item,index})=>(
-        <HotelCard item={item}/>
+        <HotelCard item={item} key={index}/>
       )}/>
     </View>
   )

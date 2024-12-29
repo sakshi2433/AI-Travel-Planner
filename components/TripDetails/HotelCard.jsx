@@ -1,58 +1,60 @@
-import { View, Text ,Image} from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { GetPhotoRef } from '../../services/GooglePlacesApi';
 
 
 
-export default function HotelCard({item}) {
+export default function HotelCard({ item }) {
 
-    const [photoRef,setPhotoRef]=useState();
+    const [photoRef, setPhotoRef] = useState();
 
-    useEffect(()=>{
+    useEffect(() => {
         GetGooglePhotoRef();
-    },[])
+    }, [])
 
-    const GetGooglePhotoRef=async()=>{
-const result=await GetPhotoRef(item.hotel_name);
-setPhotoRef(result);
-}
+    const GetGooglePhotoRef = async () => {
+        const result = await GetPhotoRef(item.hotel_name);
+        setPhotoRef(result.results[0].photos[0].photo_reference);
+    }
 
-  return (
-    <View style={{
-        marginRight:15,
-        width:180,
-        
-    }}>
-        <Image source={{uri:'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference='
-        +photoRef+'&key='+'AIzaSyA2hC-NLy9UGnzOOqTZDnRxr7uSny89dss'}}
-        style={{
-            width:180,
-            height:120,
-            borderRadius:15
-        }}
-        />
-<View style={{
-padding:5,
-}}> 
-<Text style={{
-fontFamily:'outfit-medium',
-fontSize:17
-}}>{item.hotel_name}</Text> 
+    return (
+        <View style={{
+            marginRight: 15,
+            width: 180,
 
-<View style={{
-display:'flex',
-flexDirection:'row',
-justifyContent:'space-between'
-}}>
-<Text style={{
-    fontFamily:'outfit'
-}}>★ {item.rating}</Text>
+        }}>
+            <Image source={{
+                uri: 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference='
+                    + photoRef + '&key=' + process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY
+            }}
+                style={{
+                    width: 180,
+                    height: 120,
+                    borderRadius: 15
+                }}
+            />
+            <View style={{
+                padding: 5,
+            }}>
+                <Text style={{
+                    fontFamily: 'outfit-medium',
+                    fontSize: 17
+                }}>{item.hotel_name}</Text>
 
-<Text style={{
-    fontFamily:'outfit'
-}}>💰 {item.price_per_night}</Text>
-</View>
-</View>
+                <View style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between'
+                }}>
+                    <Text style={{
+                        fontFamily: 'outfit'
+                    }}>★ {item.rating}</Text>
+
+                    <Text style={{
+                        fontFamily: 'outfit'
+                    }}>💰 {item.price_per_night}</Text>
+                </View>
+            </View>
         </View>
-  )
+    )
 }

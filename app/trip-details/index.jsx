@@ -87,7 +87,7 @@ useEffect(()=>{
 
 {/* trip day planner  */}
 
-<PlannedTrip details={tripDetails?.tripPlan?.itinerary}/>
+<PlannedTrip itinerary={tripDetails?.tripPlan?.itinerary}/>
       
       
       

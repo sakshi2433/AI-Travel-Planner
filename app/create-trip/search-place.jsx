@@ -1,4 +1,4 @@
-import { View, Text ,Dimensions} from 'react-native'
+import { View, Text ,Dimensions, TouchableOpacity} from 'react-native'
 import React, { useEffect, useContext } from 'react'
 import { useNavigation, useRouter } from 'expo-router'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -21,7 +21,7 @@ const {width, height}=Dimensions.get('window');
 
   useEffect(()=>{
     console.log(tripData);
-  }),[tripData]
+  },[tripData])
   return (
     <View
     style={{
@@ -31,11 +31,43 @@ const {width, height}=Dimensions.get('window');
     }}>
 
      <GooglePlacesAutocomplete
-      placeholder='Search Place'
+      placeholder='From'
       fetchDetails={true}
       onFail={error=>console.log(error)}
       onPress={(data, details = null) => {
-        // 'details' is provided when fetchDetails = true
+        console.log(data, details);
+        setTripData({
+          from:{
+            name:data.description,
+            coordinates:details?.geometry.location,
+            photoRef:details?.photos[0]?.photo_reference,
+            url: details?.url
+          },
+          ...tripData
+        });
+
+      }}
+      query={{
+        key: process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
+        language: 'en',
+      }}
+      styles={{
+        poweredContainer:{
+          display:'none'
+        },
+        textInputContainer:{
+          borderWidth:1,
+          borderRadius:5,
+          marginTop:height*0.1,
+          width:width*0.9
+        }
+      }}
+    />
+     <GooglePlacesAutocomplete
+      placeholder='Destination'
+      fetchDetails={true}
+      onFail={error=>console.log(error)}
+      onPress={(data, details = null) => {
         console.log(data, details);
         setTripData({
           locationInfo:{
@@ -43,24 +75,46 @@ const {width, height}=Dimensions.get('window');
             coordinates:details?.geometry.location,
             photoRef:details?.photos[0]?.photo_reference,
             url: details?.url
-          }
+          },
+          ...tripData
         });
 
-        router.push('/create-trip/select-traveler')
       }}
       query={{
-        key: "AIzaSyA2hC-NLy9UGnzOOqTZDnRxr7uSny89dss",
+        key: process.env.EXPO_PUBLIC_GOOGLE_MAP_KEY,
         language: 'en',
       }}
       styles={{
+        poweredContainer:{
+          display:'none'
+        },
         textInputContainer:{
           borderWidth:1,
           borderRadius:5,
           marginTop:height*0.1,
-          width
+          width:width*0.9
         }
       }}
     />
+    <TouchableOpacity
+          onPress={()=>{
+            console.log("Trip data:",tripData);
+            router.push('/create-trip/select-traveler')}}
+          style={{
+            padding:15,
+            backgroundColor:'black',
+            borderRadius:20,
+            width:width*0.9
+          }}>
+            
+            <Text style={{
+                color:'white',
+                fontFamily:'outfit-medium',
+                textAlign:'center',
+                fontSize:20
+    
+            }}>Next</Text>
+          </TouchableOpacity>
 
     </View>
   )

@@ -14,8 +14,8 @@ export default function PlaceCard({place}) {
     },[])
 
     const GetGooglePhotoRef=async()=>{
-const result=await GetPhotoRef(place.placeName);
-setPhotoRef(result);
+const result=await GetPhotoRef(place.place_name);
+setPhotoRef(result.results[0].photos[0].photo_reference);
 }
   return (
     <View style={{
@@ -57,16 +57,16 @@ setPhotoRef(result);
           fontFamily:'outfit',
           fontSize:17,
           marginTop:5
-        }}>🎟️ Ticket Price: 
+        }}>🎟️ Ticket Price:  
         <Text style={{
           fontFamily:'outfit-bold'
-        }}>{place?.price_per_night}</Text></Text>
+        }}>{place?.ticket_price}</Text></Text>
 
 <Text style={{
           fontFamily:'outfit',
           fontSize:17,
           marginTop:5
-        }}>⏱️ Time to Travel: 
+        }}>⏱️ Time to Travel:  
         <Text style={{
           fontFamily:'outfit-bold'
         }}>{(place?.time_to_travel)||place?.time}</Text></Text>
