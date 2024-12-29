@@ -35,7 +35,6 @@ const {width, height}=Dimensions.get('window');
       fetchDetails={true}
       onFail={error=>console.log(error)}
       onPress={(data, details = null) => {
-        console.log(data, details);
         setTripData({
           from:{
             name:data.description,
@@ -68,7 +67,6 @@ const {width, height}=Dimensions.get('window');
       fetchDetails={true}
       onFail={error=>console.log(error)}
       onPress={(data, details = null) => {
-        console.log(data, details);
         setTripData({
           locationInfo:{
             name:data.description,
