@@ -31,9 +31,9 @@ export default function Login() {
           fontSize: 15,
           textAlign: 'center',
           color: '#99AAAB',
-          margin: 25,
+          margin: 20,
          
-        }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta beatae deserunt a cupiditate itatis consequatur delectus tenetur officia. Fugiat sint cupiditate porro laboriosam voluptatibus, perferendis asperiores harum veniam expedita? Corporis, consequatur?
+        }}>An AI-driven travel planner app that transforms trip planning into a seamless experience. It customizes itineraries, suggests destinations, finds the best deals, and provides real-time recommendations. With advanced AI, explore new places, manage bookings effortlessly, and enjoy stress-free travel tailored to your preferences—all in one user-friendly platform.
         </Text>
 
         <TouchableOpacity style={styles.button}
